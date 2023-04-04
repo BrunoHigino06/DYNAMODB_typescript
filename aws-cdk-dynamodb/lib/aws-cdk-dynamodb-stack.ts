@@ -7,12 +7,26 @@ export class AwsCdkDynamodbStack extends Stack {
     super(scope, id, props);
 
     const mapfre_pipefy = new dynamodb.Table(this, 'mapfre_pipefy', { 
-      partitionKey: { name: 'Name', type: dynamodb.AttributeType.STRING }, 
+      partitionKey: { name: 'test', type: dynamodb.AttributeType.STRING },
+      sortKey: {name: 'test', type: dynamodb.AttributeType.NUMBER},
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
 
+    mapfre_pipefy.addLocalSecondaryIndex({
+      indexName: 'TB_TRIAGEM_CONSULTA_HISTORICO',
+      sortKey: {name: 'test', type: dynamodb.AttributeType.STRING},
+      projectionType: dynamodb.ProjectionType.ALL
+    });
+
+    mapfre_pipefy.addLocalSecondaryIndex({
+    indexName: 'TB_TRIAGEM_EXECUCAO_HISTORICO',
+    sortKey: {name: 'test', type: dynamodb.AttributeType.STRING},
+    projectionType: dynamodb.ProjectionType.ALL
+    });
+
     const mapfre_pipefy_analyliics = new dynamodb.Table(this, 'mapfre_pipefy_analyliics', { 
-      partitionKey: { name: 'Name', type: dynamodb.AttributeType.STRING }, 
+      partitionKey: { name: 'Name', type: dynamodb.AttributeType.STRING },
+      sortKey: {name: 'createdAt', type: dynamodb.AttributeType.NUMBER},
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
   }
