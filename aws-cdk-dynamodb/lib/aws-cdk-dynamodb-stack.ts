@@ -7,8 +7,8 @@ export class AwsCdkDynamodbStack extends Stack {
     super(scope, id, props);
 
     const mapfre_pipefy = new dynamodb.Table(this, 'mapfre_pipefy', { 
-      partitionKey: { name: 'test', type: dynamodb.AttributeType.STRING },
-      sortKey: {name: 'test', type: dynamodb.AttributeType.NUMBER},
+      partitionKey: { name: 'Name', type: dynamodb.AttributeType.STRING },
+      sortKey: {name: 'test', type: dynamodb.AttributeType.STRING},
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
 
@@ -24,9 +24,9 @@ export class AwsCdkDynamodbStack extends Stack {
     projectionType: dynamodb.ProjectionType.ALL
     });
 
-    const mapfre_pipefy_analyliics = new dynamodb.Table(this, 'mapfre_pipefy_analyliics', { 
-      partitionKey: { name: 'Name', type: dynamodb.AttributeType.STRING },
-      sortKey: {name: 'createdAt', type: dynamodb.AttributeType.NUMBER},
+    const mapfre_pipefy_analyliics = new dynamodb.Table(this, 'mapfre_pipefy_analytics', { 
+      partitionKey: { name: 'OtherName', type: dynamodb.AttributeType.STRING },
+      sortKey: {name: 'createdAt', type: dynamodb.AttributeType.STRING},
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
     });
   }
